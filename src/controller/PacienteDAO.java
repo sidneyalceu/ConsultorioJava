@@ -13,7 +13,7 @@ public class PacienteDAO {
 
 	private Connection con = null;   
     
-	 public PacienteDAO(Connection con){
+	public PacienteDAO(Connection con){
         
             this.con = con;
         
@@ -21,26 +21,26 @@ public class PacienteDAO {
 	
 	public void cadastraPaciente(Paciente paciente){
 
-		 String scriptSql = "INSERT INTO paciente (id, name, cpf)" + "VALUES (?,?,?)";
+            String scriptSql = "INSERT INTO paciente (id, nome, cpf)" + "VALUES (?,?,?)";
 
-		 try {
+		try {
 
-			PreparedStatement stmt = con.prepareStatement(scriptSql);
+                    PreparedStatement stmt = con.prepareStatement(scriptSql);
 
-			stmt.setInt(1, paciente.getId());
-			stmt.setString(2, paciente.getNome());
-			stmt.setInt(3, paciente.getCpf());
+                    stmt.setInt(1, paciente.getId());
+                    stmt.setString(2, paciente.getNome());
+                    stmt.setInt(3, paciente.getCpf());
 
-			stmt.execute();
-			stmt.close();
+                    stmt.execute();
+                    stmt.close();
 
-			System.out.println("\nCd cadastrado Com Sucesso !\n");
+                    System.out.println("\nCd cadastrado Com Sucesso !\n");
 
-		 	} catch (SQLException e) {
+		} catch (SQLException e) {
 
-		 		System.out.println(e.getMessage());
+                    System.out.println(e.getMessage());
 
-		 	}
+		}
 
 	 }
 
