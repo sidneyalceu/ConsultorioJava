@@ -29,26 +29,45 @@ public class DentistaDAO {
     public void cadastraDentista(Dentista dentista){
         
 
-            String scriptSql = "INSERT INTO dentista (nome, id)" + "VALUES (?,?)";
+        String scriptSql = "INSERT INTO dentista (id,nome,cro)" + "VALUES (?,?,?)";
 
-            try {
+        try {
 
-		PreparedStatement stmt = con.prepareStatement(scriptSql);
+            PreparedStatement stmt = con.prepareStatement(scriptSql);
                 
+            stmt.setInt(1, dentista.getId());
+            stmt.setString(2, dentista.getNome());
+            stmt.setInt(3, dentista.getCro());
+	
+            stmt.execute();
+            stmt.close();
 
-		stmt.setInt(2, dentista.getId());
-		stmt.setString(1, dentista.getNome());
+            System.out.println("\nCd cadastrado Com Sucesso !\n");
 
-		stmt.execute();
-		stmt.close();
+        } catch (SQLException e) {
 
-		System.out.println("\nCd cadastrado Com Sucesso !\n");
+            System.out.println(e.getMessage());
 
-            } catch (SQLException e) {
+        }
 
-                System.out.println(e.getMessage());
+    }
 
-            }
 
-	 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

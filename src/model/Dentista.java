@@ -4,7 +4,7 @@ public class Dentista {
 
 	private Integer id;
 	private String nome;
-	private String descricao;
+	private Integer cro;
         
         public Dentista (Integer id, String nome){
             this.id = id;
@@ -27,11 +27,11 @@ public class Dentista {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public Integer getCro() {
+		return cro;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setCro(Integer cro) {
+		this.cro = cro;
 	}
 }
