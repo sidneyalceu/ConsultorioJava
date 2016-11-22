@@ -6,9 +6,14 @@ public class Dentista {
 	private String nome;
 	private Integer cro;
         
-        public Dentista (Integer id, String nome){
+        public Dentista (Integer id, String nome, Integer cro){
             this.id = id;
             this.nome = nome;
+            this.cro = cro;
+        }
+        
+        public Dentista (){
+            
         }
 
 	public Integer getId() {
