@@ -11,118 +11,114 @@ import model.Servico;
 
 public class ServicoDAO {
 
-	private Connection con;
+    private Connection con;
 
-	 public void CdDAO(){
+    public void ServicoDAO(Connection con){
 
-		 ConexaoBD cbd = new ConexaoBD();
-		 con = cbd.getConnection();
+	this.con = con;
 
-	 }
+    }
 
-	 public void cadastraServ(Servico servico){
+    public void cadastraServico(Servico servico){
 
-		 String scriptSql = "INSERT INTO tbl_servico (id, descricao, valor)" + "VALUES (?,?,?)";
+        String scriptSql = "INSERT INTO servico (id, descricao)" + "VALUES (?,?)";
 
-	 try {
+        try {
 
-		PreparedStatement stmt = con.prepareStatement(scriptSql);
+            PreparedStatement stmt = con.prepareStatement(scriptSql);
 
-		stmt.setInt(1, servico.getId());
-		stmt.setString(2, servico.getDescricao());
-		stmt.setInt(3, servico.getValor());
+            stmt.setInt(1, servico.getId());
+            stmt.setString(2, servico.getDescricao());
+            
+            stmt.execute();
+            stmt.close();
 
+            System.out.println("\nCd cadastrado Com Sucesso !\n");
 
-		stmt.execute();
-		stmt.close();
+        } catch (SQLException e) {
 
-		System.out.println("\nCd cadastrado Com Sucesso !\n");
+            System.out.println(e.getMessage());
 
-	 	} catch (SQLException e) {
+        }
 
-	 		System.out.println(e.getMessage());
+    }
 
-	 	}
+    public void removerSer(Servico servico){
 
-	 }
+	String scriptSql = "DELETE FROM servico WHERE id = ?";
 
-	 public void removerSer(Servico servico){
+        try {
 
-		 String scriptSql = "DELETE FROM tbl_servico WHERE id = ?";
+            PreparedStatement stmt = con.prepareStatement(scriptSql);
+            stmt.setInt(1, servico.getId());
+            
+            stmt.execute();
+            stmt.close();
 
-		 try {
+            System.out.println("\nServico excluido Com Sucesso !\n");
 
-			 PreparedStatement stmt = con.prepareStatement(scriptSql);
-			 stmt.setInt(1, servico.getId());
-			 stmt.execute();
-			 stmt.close();
+        } catch (SQLException e) {
 
-			 System.out.println("\nServico excluido Com Sucesso !\n");
+            System.out.println(e.getMessage());
 
-		 } catch (SQLException e) {
+	}
+    }
 
-			 System.out.println(e.getMessage());
+    public void atualizarSer(Servico servico){
 
-		 }
-	 }
+	String scriptSql = "UPDATE servico SET descricao = ? WHERE id = ?";
 
-	 public void atualizarSer(Servico servico){
+        try {
 
-		 String scriptSql = "UPDATE tbl_servico SET descricao = ?, valor = ? WHERE id = ?";
+            PreparedStatement stmt = con.prepareStatement(scriptSql);
 
-		 try {
+            stmt.setString(1, servico.getDescricao());
+            stmt.setInt(2, servico.getId());
 
-			 PreparedStatement stmt = con.prepareStatement(scriptSql);
+            stmt.execute();
+            stmt.close();
 
-			 stmt.setString(1, servico.getDescricao());
-			 stmt.setInt(2, servico.getValor());
-			 stmt.setInt(3, servico.getId());
+            System.out.println("\nCd atualizado Com Sucesso !\n");
 
-			 stmt.execute();
-			 stmt.close();
+	} catch (Exception e) {
 
-			 System.out.println("\nCd atualizado Com Sucesso !\n");
+            System.out.println("Erro : " + e.getMessage());
 
-	 	} catch (Exception e) {
+	}
 
-		 System.out.println("Erro : " + e.getMessage());
-
-	 	}
-
-	 }
+    }
 
 
-	 public List<Servico> listarServico() {
+    public List<Servico> listarServico() {
 
-	 	 List<Servico> listaServicos = new ArrayList<Servico>();
+	List<Servico> listaServicos = new ArrayList<Servico>();
 
-		 String scriptSql = "SELECT * FROM tbl_servico";
+	String scriptSql = "SELECT * FROM servico";
 
-		 try {
+	try {
 
-			 PreparedStatement stmt = con.prepareStatement(scriptSql);
-			 ResultSet resultSet = stmt.executeQuery();
+            PreparedStatement stmt = con.prepareStatement(scriptSql);
+            ResultSet resultSet = stmt.executeQuery();
 
-			 while(resultSet.next()){
-				 Servico servico = new Servico();
+            while(resultSet.next()){
+                Servico servico = new Servico();
 
-				 servico.setId(resultSet.getInt("id"));
-				 servico.setDescricao(resultSet.getString("descricao"));
-				 servico.setValor(resultSet.getInt("valor"));
-				 listaServicos.add(servico);
-			 }
+		servico.setId(resultSet.getInt("id"));
+		servico.setDescricao(resultSet.getString("descricao"));
+		listaServicos.add(servico);
+            }
 
-			 resultSet.close();
-			 stmt.close();
+            resultSet.close();
+            stmt.close();
 
-		 } catch (Exception e) {
+	} catch (Exception e) {
 
-			 System.out.println("Erro : " + e.getMessage());
+            System.out.println("Erro : " + e.getMessage());
 
-		 }
+	}
 
-		 return listaServicos;
+        return listaServicos;
 
-	 }
+    }
 
 }
