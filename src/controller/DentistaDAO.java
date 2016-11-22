@@ -5,15 +5,12 @@
  */
 package controller;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Dentista;
-import model.Endereco;
 import model.Dentista;
 
 /**
@@ -81,58 +78,60 @@ public class DentistaDAO {
 
     }
 
-	 public void removerDentista(Dentista dentista){
+    public void removerDentista(Dentista dentista){
 
-		 String scriptSql = "DELETE FROM dentista WHERE id = ?";
+	String scriptSql = "DELETE FROM dentista WHERE id = ?";
 
-		 try {
+	try {
 
-			 PreparedStatement stmt = con.prepareStatement(scriptSql);
-			 stmt.setInt(1, dentista.getId());
-			 stmt.execute();
-			 stmt.close();
+            PreparedStatement stmt = con.prepareStatement(scriptSql);
+            stmt.setInt(1, dentista.getId());
+            stmt.execute();
+            stmt.close();
 
-			 System.out.println("\nEndereco excluido Com Sucesso !\n");
+            System.out.println("\nEndereco excluido Com Sucesso !\n");
 
-		 } catch (SQLException e) {
+	} catch (SQLException e) {
 
-			 System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
 
-		 }
-	 }
+	}
+    }
 
-	 public List<Dentista> listarDentista() {
+    public List<Dentista> listarDentista() {
 
-	 	 List<Dentista> listaDentistas = new ArrayList<Dentista>();
+        List<Dentista> listaDentistas = new ArrayList<Dentista>();
 
-		 String scriptSql = "SELECT * FROM dentista";
+	String scriptSql = "SELECT * FROM dentista";
 
-		 try {
+        try {
 
-			 PreparedStatement stmt = con.prepareStatement(scriptSql);
-			 ResultSet resultSet = stmt.executeQuery();
+            PreparedStatement stmt = con.prepareStatement(scriptSql);
+            ResultSet resultSet = stmt.executeQuery();
 
-			 while(resultSet.next()){
-				 Dentista dentista = new Dentista();
+            while(resultSet.next()){
+		
+                Dentista dentista = new Dentista();
 
-				 dentista.setId(resultSet.getInt("id"));
-				 dentista.setNome(resultSet.getString("nome"));
-				 dentista.setCpf(resultSet.getInt("cpf"));
-				 listaDentistas.add(dentista);
-			 }
+		dentista.setId(resultSet.getInt("id"));
+		dentista.setNome(resultSet.getString("nome"));
+		dentista.setCro(resultSet.getInt("cro"));
+		listaDentistas.add(dentista);
+            
+            }
 
-			 resultSet.close();
-			 stmt.close();
+		resultSet.close();
+		stmt.close();
 
-		 } catch (Exception e) {
+	} catch (Exception e) {
 
-			 System.out.println("Erro : " + e.getMessage());
+            System.out.println("Erro : " + e.getMessage());
 
-		 }
+	}
 
-		 return listaDentistas;
+	return listaDentistas;
 
-	 }
+    }
 
 
 
