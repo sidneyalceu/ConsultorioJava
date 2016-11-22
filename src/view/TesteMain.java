@@ -8,6 +8,7 @@ package view;
 import java.sql.Connection;
 import controller.ConexaoBD;
 import controller.PacienteDAO;
+import java.util.List;
 import model.Paciente;
 
 /**
@@ -21,10 +22,26 @@ public class TesteMain {
         
         con = ConexaoBD.getConnection();
         
-        Paciente paciente = new Paciente(1,"sidney",0001);
+        //Paciente paciente = new Paciente(1,"sidney",0001);
         
         PacienteDAO dao = new PacienteDAO(con);
-        dao.cadastraPaciente(paciente);
+        //dao.cadastraPaciente(paciente);
+        
+        Paciente paciente2 = new Paciente(1,"sidneyjr",3);
+        
+        //dao.atualizarPaciente(paciente2);
+
+        dao.removerPaciente(paciente2);
+        
+        List<Paciente> listapaciente = dao.listarPaciente();
+
+        for (Paciente lista : listapaciente) {
+            
+            System.out.print(lista.getId()+" | ");
+            System.out.print(lista.getNome()+" | ");
+            System.out.println(lista.getCpf());
+       
+        } 
        
     }
     

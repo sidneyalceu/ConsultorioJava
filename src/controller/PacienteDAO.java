@@ -46,7 +46,7 @@ public class PacienteDAO {
 
 	 public void atualizarPaciente(Paciente paciente){
 
-		 String scriptSql = "UPDATE tbl_paciente SET nome = ?, cpf = ?, rg = ?, telefone = ? WHERE id = ?";
+		 String scriptSql = "UPDATE paciente SET nome = ?, cpf= ? WHERE id = ?";
 
 		 try {
 
@@ -54,7 +54,7 @@ public class PacienteDAO {
 
 			 stmt.setString(1, paciente.getNome());
 			 stmt.setInt(2, paciente.getCpf());
-			 stmt.setInt(5, paciente.getId());
+			 stmt.setInt(3, paciente.getId());
 
 			 stmt.execute();
 			 stmt.close();
@@ -71,7 +71,7 @@ public class PacienteDAO {
 
 	 public void removerPaciente(Paciente paciente){
 
-		 String scriptSql = "DELETE FROM tbl_paciente WHERE id = ?";
+		 String scriptSql = "DELETE FROM paciente WHERE id = ?";
 
 		 try {
 
@@ -93,7 +93,7 @@ public class PacienteDAO {
 
 	 	 List<Paciente> listaPacientes = new ArrayList<Paciente>();
 
-		 String scriptSql = "SELECT * FROM tbl_paciente";
+		 String scriptSql = "SELECT * FROM paciente";
 
 		 try {
 

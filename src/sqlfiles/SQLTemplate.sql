@@ -15,70 +15,37 @@ id INT(5) NOT NULL
 
 TABELA DENTISTA
 
-CREATE TABLE public.dentista
+CREATE TABLE dentista
 (
     id serial,
     cro integer,
-    nome character varying(50) COLLATE "default".pg_catalog
+    nome character varying(50)
 )
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
-
-ALTER TABLE public.dentista
-    OWNER to postgres;
-
-
 --------------------------------------------------------------
 TABELA PACIENTE
 
-CREATE TABLE public.paciente
+CREATE TABLE paciente
 (
     id serial,
-    nome character varying COLLATE "default".pg_catalog,
+    nome character varying,
     cpf integer
 )
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
-
-ALTER TABLE public.paciente
-    OWNER to postgres;
-
 --------------------------------------------------------------
 TABELA SERVIÇO
 
-CREATE TABLE public.servico
+CREATE TABLE servico
 (
     id integer,
-    descricao character varying(30) COLLATE "default".pg_catalog
+    descricao character varying(30)
 )
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
-
-ALTER TABLE public.servico
-    OWNER to postgres;
-
 --------------------------------------------------------------
  TABELA AGENDAMENTO
 
-CREATE TABLE public.agenda
+CREATE TABLE agenda
 (
     id serial,
     idpaciente integer,
     iddentista integer,
     idservico integer,
-    data date,
-    hora reltime
+    data date
 )
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
-
-ALTER TABLE public.agenda
-    OWNER to postgres;
