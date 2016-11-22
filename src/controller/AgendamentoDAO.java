@@ -114,7 +114,7 @@ public class AgendamentoDAO {
                 agendamento.setIdpaciente(resultSet.getInt("idpaciente"));
                 agendamento.setIddentista(resultSet.getInt("iddentista"));
 		agendamento.setIdservico(resultSet.getInt("idservico"));
-		agendamento.setData(resultSet.getString("Data"));
+		agendamento.setData(resultSet.getString("data"));
 		listaServicos.add(agendamento);
             }
 
