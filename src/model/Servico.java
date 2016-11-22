@@ -2,32 +2,42 @@ package model;
 
 public class Servico {
 
-	private Integer id;
-	private String descricao;
-	private Integer valor;
+    private Integer id;
+    private String descricao;
 
-	public Integer getId() {
-		return id;
-	}
+    public Servico() {
+    
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Servico(Integer id, String descricao) {
+    
+        this.id = id;
+        this.descricao = descricao;
+    
+    }
+    
+    public Integer getId() {
 
-	public String getDescricao() {
-		return descricao;
-	}
+        return id;
+    
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    public void setId(Integer id) {
 
-	public Integer getValor() {
-		return valor;
-	}
+        this.id = id;
+    
+    }
 
-	public void setValor(Integer valor) {
-		this.valor = valor;
-	}
+    public String getDescricao() {
+
+        return descricao;
+    
+    }
+
+    public void setDescricao(String descricao) {
+
+        this.descricao = descricao;
+
+    }
 
 }
